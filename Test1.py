@@ -13,17 +13,17 @@ URL = 'https://drive.usercontent.google.com/u/0/uc?id=1IGENwFzLm8bBEboISadYSNEdx
 RegFileName = "settings1.reg"
 GooseFileWay = 'E:\SteamLibrary\steamapps\common\Goose Goose Duck'
 
-# Скачивает в загрузки файл
+# Load in windows dowanload
 driver = webdriver.Chrome()
 driver.get(URL)
-sleep(15)
+sleep(7)
 dowanload = driver.find_element(By.ID,'uc-download-link')
-sleep(13)
+sleep(5)
 dowanload.click()
-sleep(15)
+sleep(7)
 driver.close()
 
-#Находит файл в загрузках
+# Find in Dowanload file
 downloads_path = str(Path.home() / "Downloads")
 files = os.listdir(downloads_path)
 file_type = r"\*crdownload"
@@ -31,10 +31,7 @@ files = glob.glob(downloads_path + file_type)
 max_file = max(files, key=os.path.getctime)
 os.rename(max_file, RegFileName)
 
-# Перемещаем файл к игре
+# Move file,open file and game
 RegNewFileName = shutil.move(RegFileName, GooseFileWay)
-os.system('"E:\SteamLibrary\steamapps\common\Goose Goose Duck\settings1.reg"')
-sleep(30)
-os.system('"E:\SteamLibrary\steamapps\common\Goose Goose Duck\Goose Goose Duck.exe"')
-os.system(GooseFileWay+'\Goose Goose Duck.exe')
-#os.remove(RegNewFileName)
+os.system('"'+GooseFileWay+'\settings1.reg'+'"')
+os.system('"'+GooseFileWay+'\Goose Goose Duck.exe'+'"')
